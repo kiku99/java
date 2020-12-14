@@ -1,25 +1,28 @@
-interface father{}
-interface mother{}
-interface programmer{
-    public void coding();
-}
-interface believer{}
-class Steve implements father, programmer, believer{
-    public void coding(){
-        System.out.println("fast");
+import java.io.*;
+class B{
+    void run() throws IOException, FileNotFoundException{
+        BufferedReader bReader = null;
+        String input = null;
+        bReader = new BufferedReader(new FileReader("out.txt"));
+        input = bReader.readLine();
+        System.out.println(input);
     }
 }
-class Rachel implements mother, programmer{
-    public void coding(){
-        System.out.println("elegance");
+class C{
+    void run() throws IOException, FileNotFoundException{
+        B b = new B();
+        b.run();
     }
 }
-public class Workspace{
-    public static void main(String[] args){
-        programmer employee1 = new Steve();
-        programmer employee2 = new Rachel();
-
-        employee1.coding();
-        employee2.coding();
+public class ThrowExceptionDemo {
+    public static void main(String[] args) {
+        C c = new C();
+        try {
+            c.run();
+        } catch (FileNotFoundException e) {
+            System.out.println("out.txt 파일은 설정 파일 입니다. 이 파일이 프로잭트 루트 디렉토리에 존재해야 합니다.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
